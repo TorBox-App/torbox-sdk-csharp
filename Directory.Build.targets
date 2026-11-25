@@ -1,0 +1,18 @@
+<Project>
+  <PropertyGroup Condition="'$(PackageId)' == 'TorBox.Sdk'">
+    <Authors>TorBox</Authors>
+    <Company>TorBox</Company>
+    <Description>Official C# client for the TorBox API.</Description>
+    <PackageProjectUrl>https://api-docs.torbox.app</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <!-- Assembly version parts are 16-bit, so the dated patch number YYYYMMDDNN cannot be one. The assembly
+         version keeps the TorBox major and minor version, and the file version splits it as YYMM.DDNN. -->
+    <AssemblyVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(Version)', '^(\d+)\.(\d+)\..*$', '$1.$2.0.0'))</AssemblyVersion>
+    <FileVersion>$([System.Text.RegularExpressions.Regex]::Replace('$(Version)', '^(\d+)\.(\d+)\.\d\d(\d{4})(\d{4})$', '$1.$2.$3.$4'))</FileVersion>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(PackageId)' == 'TorBox.Sdk'">
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="/" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>
